@@ -1,0 +1,331 @@
+/* =================================
+   إعدادات عامة للمشروع
+   ================================= */
+
+/* استيراد الخط المستخدم من Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+/* =================================
+   متغيرات الألوان (الأساس للوضع المظلم)
+   ================================= */
+:root {
+    --bg-color: #f4f7f9;
+    --main-bg-color: #ffffff;
+    --primary-text-color: #333333;
+    --secondary-text-color: #555;
+    --heading-color: #2c3e50;
+    --accent-color: #3498db;
+    --accent-color-darker: #2980b9;
+    --border-color: #eef2f5;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --code-bg-color: #ecf0f1;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --main-bg-color: #1e1e1e;
+    --primary-text-color: #e0e0e0;
+    --secondary-text-color: #b0b0b0;
+    --heading-color: #ffffff;
+    --accent-color: #4dabf7;
+    --accent-color-darker: #3690f0;
+    --border-color: #2c2c2c;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --code-bg-color: #2a2a2a;
+}
+/* إعدادات أساسية للصفحة */
+body {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s; /* انتقال ناعم */
+    overflow-y: auto; /* نضمن ظهور شريط التمرير العمودي للصفحة عند الحاجة */
+
+}
+
+/* =================================
+   تصميم الحاوية الرئيسية والمحتوى
+   ================================= */
+
+/* الحاوية الرئيسية التي تجمع كل المحتوى */
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: var(--main-bg-color);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px var(--shadow-color);
+    border-top: 5px solid var(--accent-color);
+    transition: background-color 0.3s;
+}
+
+/* ترويسة الموقع */
+header {
+    text-align: center;
+    border-bottom: 2px solid #eef2f5; /* خط فاصل أسفل الترويسة */
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+/* العنوان الرئيسي H1 */
+h1 {
+    color: #2c3e50; /* لون أزرق داكن */
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+/* الفقرة التوضيحية في الترويسة */
+header p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* العناوين الفرعية H2 */
+h2 {
+    color: #3498db; /* لون أزرق مميز */
+    border-bottom: 1px solid #eaf2f8;
+    padding-bottom: 10px;
+    margin-top: 40px; /* مسافة علوية لفصل الأقسام */
+    font-size: 1.8em;
+}
+
+/* العناوين الأصغر H3 */
+h3 {
+    color: #2980b9; /* درجة أغمق من الأزرق */
+    margin-top: 30px;
+    font-size: 1.4em;
+}
+
+/* إعدادات الفقرات والقوائم */
+p, ul {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+ul {
+    padding-right: 20px; /* مسافة بادئة للقوائم غير المرقمة */
+}
+
+li {
+    margin-bottom: 8px; /* مسافة بين عناصر القائمة */
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eef2f5;
+    margin: 40px 0;
+}
+
+
+/* =================================
+   تصميم أزرار التنقل (Tabs)
+   ================================= */
+
+.tabs {
+    display: flex;
+    justify-content: center; /* توسيط الأزرار */
+    flex-wrap: wrap; /* السماح للأزرار بالانتقال لسطر جديد على الشاشات الصغيرة */
+    gap: 10px; /* مسافة بين الأزرار */
+    margin-bottom: 40px;
+}
+
+.tab-button {
+    padding: 12px 25px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #f0f3f5;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* تأثير انتقال ناعم */
+    color: #555;
+}
+
+.tab-button:hover {
+    background-color: #e0e5e9; /* تغيير اللون عند مرور الفأرة */
+    border-color: #c0c0c0;
+}
+
+/* تصميم الزر النشط (الذي تم الضغط عليه) */
+.tab-button.active {
+    background-color: #3498db;
+    color: #ffffff;
+    border-color: #3498db;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.4);
+}
+
+/* =================================
+   تصميم أقسام المحتوى وطريقة ظهورها
+   ================================= */
+
+/* كل أقسام المحتوى مخفية بشكل افتراضي */
+.content-section {
+    display: none;
+    animation: fadeIn 0.6s ease-in-out; /* إضافة تأثير ظهور تدريجي */
+}
+
+/* القسم النشط (المرئي) */
+.content-section.visible {
+    display: block;
+}
+
+/* تعريف تأثير الظهور التدريجي */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =================================
+   تصميم خاص بصناديق الكود
+   ================================= */
+code {
+    display: block;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    padding: 15px;
+    border-radius: 5px;
+    border-right: 4px solid #3498db; /* شريط جانبي لتمييز الصندوق */
+    font-family: 'Courier New', Courier, monospace; /* خط مناسب لعرض الكود */
+    font-size: 1.05em; /* تكبير الخط قليلاً لسهولة النسخ */
+    white-space: pre-wrap; /* يسمح للأسطر الطويلة بالالتفاف */
+    word-wrap: break-word;
+    margin-top: 10px;
+    line-height: 1.6;
+    text-align: right;
+}
+
+/* تمييز الوسوم المائلة داخل الكود */
+code em {
+    font-style: italic;
+    color: #2980b9;
+}
+/* =================================
+   تصميم زر الوضع المظلم
+   ================================= */
+.theme-toggle-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--code-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+
+/* =================================
+   تصميم الفوتر (معلوماتك الشخصية)
+   ================================= */
+.site-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-text-color);
+}
+
+.footer-content p {
+    margin: 8px 0;
+    font-size: 0.9em;
+}
+
+.developer-info a, .legal-info a {
+    color: var(--accent-color-darker);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.developer-info a:hover, .legal-info a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.version-info {
+    font-style: italic;
+    opacity: 0.8;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 1000;
+}
+
+/* حالة الظهور */
+.modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* صندوق المحتوى الرئيسي للنافذة */
+.modal-content {
+    background-color: var(--main-bg-color);
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+    max-height: 85vh; /* نحدد أقصى ارتفاع للنافذة بـ 85% من ارتفاع الشاشة */
+    overflow-y: auto;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--accent-color);
+}
+
+.modal-content hr {
+    margin: 15px 0;
+}
+
+/* زر الإغلاق */
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px; /* تم تعديله ليكون على اليسار ليناسب التصميم العربي */
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    line-height: 1;
+}
